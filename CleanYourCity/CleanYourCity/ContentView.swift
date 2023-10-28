@@ -20,15 +20,61 @@ struct ContentView: View {
     }
 }
 
-struct ContentView2: View {
+struct MainView: View {
     var body: some View {
-        VStack {
-            Text("Some bold Text").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-            Text("Another Text").fontWeight(.light)
-        }.frame(alignment: .top)
+        ZStack {
+            Image("JkuMap").resizable().ignoresSafeArea(.all, edges: .all)
+            VStack {
+                Spacer()
+                
+                HStack {
+                    Button(action: {}, label: {
+                        Circle().fill(Color.green).frame(width:60, height:60).overlay(
+                            VStack {
+                                Text("---")
+                                Text("---")
+                                Text("---")
+                            }
+                        )
+                    })
+                    Spacer()
+                    Button(action: {}, label: {
+                        Circle().fill(Color.green).frame(width:60, height:60).overlay(
+                            Text("+").foregroundStyle(.white).fontWeight(.bold).font(.system(size: 40))
+                        )
+                    })
+                    NavigationView {
+                        NavigationLink(destination: CameraView()) {
+                            Text("Test")
+                        }
+                        
+                    }
+                }.padding(20)
+            }
+        }
+    }
+}
+
+struct CameraView: View {
+    var body: some View {
+        ZStack {
+            Color.black.ignoresSafeArea(.all, edges: .all)
+            
+            VStack {
+                Spacer()
+                
+                HStack {
+                    Button(action: {}, label: {
+                        ZStack {
+                            Circle().fill(Color.white).frame(width: 75, height: 75)
+                        }
+                    })
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    ContentView2()
+    MainView()
 }
