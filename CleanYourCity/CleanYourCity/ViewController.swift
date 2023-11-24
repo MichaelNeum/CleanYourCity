@@ -28,6 +28,7 @@ class ViewController: UIViewController {
         views.append(CameraView().view)
         
         for v in views {
+            v.frame.size = containerView.frame.size
             containerView.addSubview(v)
         }
         
