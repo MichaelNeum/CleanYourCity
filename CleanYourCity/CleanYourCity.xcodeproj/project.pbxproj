@@ -16,6 +16,12 @@
 		4C15585C2B10DAF90008F644 /* CleanYourCityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15585B2B10DAF90008F644 /* CleanYourCityTests.swift */; };
 		4C1558662B10DAF90008F644 /* CleanYourCityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1558652B10DAF90008F644 /* CleanYourCityUITests.swift */; };
 		4C1558682B10DAF90008F644 /* CleanYourCityUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1558672B10DAF90008F644 /* CleanYourCityUITestsLaunchTests.swift */; };
+		4C15587D2B10FA8D0008F644 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15587B2B10FA8D0008F644 /* MapView.swift */; };
+		4C15587E2B10FA8D0008F644 /* MapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C15587C2B10FA8D0008F644 /* MapView.xib */; };
+		4C1558812B10FA9E0008F644 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15587F2B10FA9E0008F644 /* CameraView.swift */; };
+		4C1558822B10FA9E0008F644 /* CameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1558802B10FA9E0008F644 /* CameraView.xib */; };
+		4C1558852B10FAAD0008F644 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1558832B10FAAD0008F644 /* DataView.swift */; };
+		4C1558862B10FAAD0008F644 /* DataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1558842B10FAAD0008F644 /* DataView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +55,12 @@
 		4C1558612B10DAF90008F644 /* CleanYourCityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CleanYourCityUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C1558652B10DAF90008F644 /* CleanYourCityUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanYourCityUITests.swift; sourceTree = "<group>"; };
 		4C1558672B10DAF90008F644 /* CleanYourCityUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanYourCityUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4C15587B2B10FA8D0008F644 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		4C15587C2B10FA8D0008F644 /* MapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapView.xib; sourceTree = "<group>"; };
+		4C15587F2B10FA9E0008F644 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		4C1558802B10FA9E0008F644 /* CameraView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CameraView.xib; sourceTree = "<group>"; };
+		4C1558832B10FAAD0008F644 /* DataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
+		4C1558842B10FAAD0008F644 /* DataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +111,7 @@
 		4C1558432B10DAF80008F644 /* CleanYourCity */ = {
 			isa = PBXGroup;
 			children = (
+				4C1558742B10F6EE0008F644 /* Views */,
 				4C1558442B10DAF80008F644 /* AppDelegate.swift */,
 				4C1558462B10DAF80008F644 /* SceneDelegate.swift */,
 				4C1558482B10DAF80008F644 /* ViewController.swift */,
@@ -125,6 +138,19 @@
 				4C1558672B10DAF90008F644 /* CleanYourCityUITestsLaunchTests.swift */,
 			);
 			path = CleanYourCityUITests;
+			sourceTree = "<group>";
+		};
+		4C1558742B10F6EE0008F644 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4C15587B2B10FA8D0008F644 /* MapView.swift */,
+				4C15587C2B10FA8D0008F644 /* MapView.xib */,
+				4C15587F2B10FA9E0008F644 /* CameraView.swift */,
+				4C1558802B10FA9E0008F644 /* CameraView.xib */,
+				4C1558832B10FAAD0008F644 /* DataView.swift */,
+				4C1558842B10FAAD0008F644 /* DataView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,7 +257,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C1558862B10FAAD0008F644 /* DataView.xib in Resources */,
 				4C1558512B10DAF80008F644 /* LaunchScreen.storyboard in Resources */,
+				4C15587E2B10FA8D0008F644 /* MapView.xib in Resources */,
+				4C1558822B10FA9E0008F644 /* CameraView.xib in Resources */,
 				4C15584E2B10DAF80008F644 /* Assets.xcassets in Resources */,
 				4C15584C2B10DAF80008F644 /* Main.storyboard in Resources */,
 			);
@@ -258,8 +287,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C1558852B10FAAD0008F644 /* DataView.swift in Sources */,
 				4C1558492B10DAF80008F644 /* ViewController.swift in Sources */,
+				4C15587D2B10FA8D0008F644 /* MapView.swift in Sources */,
 				4C1558452B10DAF80008F644 /* AppDelegate.swift in Sources */,
+				4C1558812B10FA9E0008F644 /* CameraView.swift in Sources */,
 				4C1558472B10DAF80008F644 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

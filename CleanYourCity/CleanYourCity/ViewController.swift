@@ -8,12 +8,35 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var viewSegmentedControl: UISegmentedControl!
+    
+    @IBOutlet weak var containerView: UIView!
+    
+    private var views: [UIView]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.setup()
     }
 
-
+    private func setup() {
+        views = [UIView]()
+        
+        views.append(DataView().view)
+        views.append(MapView().view)
+        views.append(CameraView().view)
+        
+        for v in views {
+            containerView.addSubview(v)
+        }
+        
+        containerView.bringSubviewToFront(views[1])
+        viewSegmentedControl.selectedSegmentIndex = 1
+    }
+    
+    @IBAction func switchViewAction(_ sender: UISegmentedControl) {
+        containerView.bringSubviewToFront(views[sender.selectedSegmentIndex])
+    }
 }
 
