@@ -1,13 +1,13 @@
 //
-//  DataView.swift
+//  ViewController.swift
 //  CleanYourCity
 //
-//  Created by Michael Neumayr on 24.11.23.
+//  Created by Michael Neumayr on 09.12.23.
 //
 
 import UIKit
 
-class DataView: UIViewController {
+class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

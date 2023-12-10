@@ -23,17 +23,29 @@ class ViewController: UIViewController {
     private func setup() {
         views = [UIView]()
         
-        views.append(DataView().view)
-        views.append(MapView().view)
-        views.append(CameraView().view)
+        let dataViewController = DataViewController()
+        let mapView = MapView()
+        let cameraView = CameraView()
+        
+        views.append(dataViewController.view)
+        views.append(mapView.view)
+        views.append(cameraView.view)
+        
+        addChild(dataViewController)
+        addChild(mapView)
+        addChild(cameraView)
+        
+        dataViewController.didMove(toParent: self)
+        mapView.didMove(toParent: self)
+        cameraView.didMove(toParent: self)
         
         for v in views {
             v.frame.size = containerView.frame.size
             containerView.addSubview(v)
         }
         
-        containerView.bringSubviewToFront(views[1])
-        viewSegmentedControl.selectedSegmentIndex = 1
+        containerView.bringSubviewToFront(views[2])
+        viewSegmentedControl.selectedSegmentIndex = 2
     }
     
     @IBAction func switchViewAction(_ sender: UISegmentedControl) {
