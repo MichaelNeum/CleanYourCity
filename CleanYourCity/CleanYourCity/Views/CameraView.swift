@@ -10,11 +10,14 @@ import UIKit
 class CameraView: UIViewController {
     
     @IBOutlet weak var slider: UISlider!
-    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        textField.delegate = self
     }
     
     @IBAction func addFoto(_ sender: Any) {
@@ -42,6 +45,13 @@ extension CameraView: UIImagePickerControllerDelegate, UINavigationControllerDel
             return
         }
         
-        button.setBackgroundImage(image, for: .normal)
+        imageView.image = image
+    }
+}
+
+extension CameraView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return true
     }
 }
