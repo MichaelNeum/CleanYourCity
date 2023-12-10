@@ -10,9 +10,12 @@ import UIKit
 class DataViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    var data: [ReportData]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        data = ReportData.sampleData
         
         tableView.register(UINib(nibName: "DataTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         
@@ -21,13 +24,15 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DataTableViewCell
         
-        cell.numberLabel.text = "Number: \(indexPath.row)"
+        cell.numberLabel.text = data[indexPath.row].id
+        cell.dateLabel.text = "\(data[indexPath.row].date)"
+        cell.statusLabel.text = data[indexPath.row].status
         
         return cell
     }

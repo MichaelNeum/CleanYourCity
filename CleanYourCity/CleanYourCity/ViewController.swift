@@ -44,8 +44,11 @@ class ViewController: UIViewController {
             containerView.addSubview(v)
         }
         
-        containerView.bringSubviewToFront(views[2])
-        viewSegmentedControl.selectedSegmentIndex = 2
+        containerView.bringSubviewToFront(views[1])
+        viewSegmentedControl.selectedSegmentIndex = 1
+        
+        containerView.layer.masksToBounds = true
+        containerView.layer.cornerRadius = 40
     }
     
     @IBAction func switchViewAction(_ sender: UISegmentedControl) {

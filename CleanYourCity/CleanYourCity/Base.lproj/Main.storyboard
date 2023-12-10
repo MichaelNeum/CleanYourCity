@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z92-DD-rnb">
-                                <rect key="frame" x="0.0" y="160" width="393" height="692"/>
+                                <rect key="frame" x="10" y="160" width="373" height="682"/>
                             </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clean Your City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cx-Ta-ygt">
                                 <rect key="frame" x="10" y="69" width="218" height="40"/>
@@ -41,16 +41,16 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="4cx-Ta-ygt" firstAttribute="leading" secondItem="hJm-T2-XeN" secondAttribute="leading" constant="10" id="8rz-s9-yht"/>
+                            <constraint firstItem="Z92-DD-rnb" firstAttribute="leading" secondItem="hJm-T2-XeN" secondAttribute="leading" constant="10" id="9Nf-yF-c6J"/>
                             <constraint firstItem="MKH-Bn-mu1" firstAttribute="trailing" secondItem="hJm-T2-XeN" secondAttribute="trailing" constant="10" id="Erz-aa-r1H"/>
                             <constraint firstItem="MKH-Bn-mu1" firstAttribute="leading" secondItem="hJm-T2-XeN" secondAttribute="leading" constant="10" id="N5m-S4-b5r"/>
                             <constraint firstItem="4cx-Ta-ygt" firstAttribute="top" secondItem="hJm-T2-XeN" secondAttribute="top" constant="10" id="NHl-nu-6SS"/>
-                            <constraint firstItem="Z92-DD-rnb" firstAttribute="trailing" secondItem="hJm-T2-XeN" secondAttribute="trailing" id="Xoe-fm-d9z"/>
+                            <constraint firstItem="hJm-T2-XeN" firstAttribute="trailing" secondItem="Z92-DD-rnb" secondAttribute="trailing" constant="10" id="RK1-nC-InI"/>
                             <constraint firstItem="MKH-Bn-mu1" firstAttribute="top" secondItem="4cx-Ta-ygt" secondAttribute="bottom" constant="10" id="YOW-Wy-Kmv"/>
-                            <constraint firstItem="Z92-DD-rnb" firstAttribute="leading" secondItem="hJm-T2-XeN" secondAttribute="leading" id="b3H-yt-VFB"/>
                             <constraint firstItem="MKH-Bn-mu1" firstAttribute="leading" secondItem="hJm-T2-XeN" secondAttribute="leading" constant="10" id="cE5-ul-Uni"/>
                             <constraint firstAttribute="trailing" secondItem="MKH-Bn-mu1" secondAttribute="trailing" constant="10" id="eZO-tG-0wb"/>
-                            <constraint firstAttribute="bottom" secondItem="Z92-DD-rnb" secondAttribute="bottom" id="jOb-M9-oxt"/>
-                            <constraint firstItem="Z92-DD-rnb" firstAttribute="top" secondItem="MKH-Bn-mu1" secondAttribute="bottom" constant="10" id="sQt-h9-4MQ"/>
+                            <constraint firstAttribute="bottom" secondItem="Z92-DD-rnb" secondAttribute="bottom" constant="10" id="m1d-pk-5Br"/>
+                            <constraint firstItem="Z92-DD-rnb" firstAttribute="top" secondItem="MKH-Bn-mu1" secondAttribute="bottom" constant="10" id="scH-cf-Cqr"/>
                         </constraints>
                     </view>
                     <connections>
