@@ -36,6 +36,12 @@
                                     <action selector="switchViewAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="9ZL-LI-pNl"/>
                                 </connections>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GsZ-kb-PEF">
+                                <rect key="frame" x="305" y="69" width="70" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Login "/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hJm-T2-XeN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
