@@ -1,0 +1,63 @@
+/* styles.css */
+
+/* Styling for the map container */
+#map {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 600px; /* Adjust width as needed */
+  height: 600px; /* Adjust height as needed */
+  border: 1px solid #AAA;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 640px; /* Adjust based on the map width */
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.records {
+  max-width: 100%;
+  overflow: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+select {
+  width: 100%;
+  padding: 5px;
+}
