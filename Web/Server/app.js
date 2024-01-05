@@ -7,29 +7,29 @@ const port = 3000
 const initJsonFile = {
     users: [
         {
-            identification: "123456789",
+            userId: "123456789",
             reports: []
         },
         {
-            identification: "987654321",
+            userId: "987654321",
             reports: []
         }
     ]
 }
 app.get('/', (req, res) => {
-    //writeFile(JSON.stringify(initJsonFile)) this was just for initialization of the json file
+    //writeFile(JSON.stringify(initJsonFile)) //this was just for initialization of the json file
     res.json(readFile())
 })
 
-app.get('/send/report', async (req, res) => {
+app.post('/send/report', async (req, res) => {
     newReport(req, res)
 })
 
-app.get('/get/myreports', async (req, res) => {
+app.post('/get/myreports', async (req, res) => {
     sendReports(req, res)
 })
 
-app.get('/get/allreports', async (req, res) => {
+app.post('/get/allreports', async (req, res) => {
     sendAllReports(req, res)
 })
 
@@ -39,7 +39,38 @@ app.listen(port, () => {
 
 
 function newReport(req, res) {
-    res.send('new Report')
+    console.log('request to make new report sent')
+    var data = readFile()
+    var userId = req.body.userId
+    if(userId === "") {
+        userId = createNewUserId()
+        const newUser = {
+            userId: userId,
+            reports: []
+        }
+        data.users.push(newUser)
+    }
+    var user = null
+    for(var i = 0; i < data.users.length; i++) {
+        if(data.users[i].userId === userId) {
+            user = data.users[i]
+        }
+    }
+    const newReport = {
+        userId: userId,
+        reportId: createNewReportId(),
+        coordinates: {
+            longitude: req.body.coordinates.longitude,
+            latitude: req.body.coordinates.latitude
+        },
+        picture: req.body.picture,
+        dirtiness: req.body.dirtiness,
+        comment: req.body.comment,
+        status: "received"
+    }
+    user.reports.push(newReport)
+    writeFile(JSON.stringify(data))
+    res.send(newReport)
 }
 
 function sendReports(req, res) {
@@ -59,4 +90,22 @@ function writeFile(data) {
     fs.writeFileSync('./data.json', data, e => {
         if(e) console.log(e)
     })
+}
+
+function createNewUserId(data) {
+    var result = ""
+    for(var i = 0; i < 9; i++) {
+        result += Math.floor(Math.random() * 10)
+    }
+    for(var i = 0; i < data.users.length; i++) {
+        if(result === data.users[i]) {
+            result = createNewUserId(data)
+            break
+        }
+    }
+    return result
+}
+
+function createNewReportId(data, userNumber) {
+    return data.users[userNumber].reports.length + 1
 }

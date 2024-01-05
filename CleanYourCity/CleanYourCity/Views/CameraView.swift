@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class CameraView: UIViewController {
     
@@ -28,6 +29,8 @@ class CameraView: UIViewController {
     }
     
     @IBAction func send(_ sender: Any) {
+        let com = ServerCommunication()
+        let result = com.sendReport(coordinates: CLLocationCoordinate2D(latitude: 48.334674, longitude: 14.324331), picture: "22", dirtiness: 3, comment: "Hello")
     }
 }
 
