@@ -2,7 +2,7 @@ import Foundation
 import CoreLocation
 
 class ServerCommunication {
-    private let reportUrl = "localhost:3000/send/report"
+    private let reportUrl = "http://localhost:3000/send/report"
     func sendReport(coordinates: CLLocationCoordinate2D, picture: String, dirtiness: Int, comment: String) -> Bool{
         guard let url = URL(string: reportUrl) else {
             return false

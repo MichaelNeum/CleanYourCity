@@ -4,6 +4,8 @@ const fs = require('fs')
 const app = express()
 const port = 3000
 
+app.use(express.json())
+
 const initJsonFile = {
     users: [
         {
@@ -40,25 +42,29 @@ app.listen(port, () => {
 
 function newReport(req, res) {
     console.log('request to make new report sent')
+    console.log(req.body)
     var data = readFile()
+    console.log(data)
     var userId = req.body.userId
     if(userId === "") {
-        userId = createNewUserId()
+        userId = createNewUserId(data)
         const newUser = {
             userId: userId,
             reports: []
         }
         data.users.push(newUser)
     }
+    var userNumber = 0
     var user = null
     for(var i = 0; i < data.users.length; i++) {
         if(data.users[i].userId === userId) {
             user = data.users[i]
+            userNumber = i
         }
     }
     const newReport = {
         userId: userId,
-        reportId: createNewReportId(),
+        reportId: createNewReportId(data, userNumber),
         coordinates: {
             longitude: req.body.coordinates.longitude,
             latitude: req.body.coordinates.latitude
