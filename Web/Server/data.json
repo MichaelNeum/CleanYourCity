@@ -2,11 +2,46 @@
     "users": [
         {
             "userId": "123456789",
-            "reports": []
+            "reports": [
+                {
+                    "userId": "123456789",
+                    "reportId": 1,
+                    "coordinates": {
+                        "longitude": 14.321065,
+                        "latitude": 48.337522
+                    },
+                    "picture": "test1.jpg",
+                    "comment": "First report",
+                    "status": "received"
+                },
+                {
+                    "userId": "123456789",
+                    "reportId": 2,
+                    "coordinates": {
+                        "longitude": 14.318367,
+                        "latitude": 48.337432
+                    },
+                    "picture": "test2.jpg",
+                    "comment": "Second report",
+                    "status": "in work"
+                }
+            ]
         },
         {
             "userId": "987654321",
-            "reports": []
+            "reports": [
+                {
+                    "userId": "987654321",
+                    "reportId": 1,
+                    "coordinates": {
+                        "longitude": 14.321065,
+                        "latitude": 48.337522
+                    },
+                    "picture": "test3.jpg",
+                    "comment": "Another report",
+                    "status": "received"
+                }
+            ]
         },
         {
             "userId": "788697667",
@@ -21,6 +56,17 @@
                     "picture": "22",
                     "comment": "Hello",
                     "status": "received"
+                },
+                {
+                    "userId": "788697667",
+                    "reportId": 2,
+                    "coordinates": {
+                        "longitude": 14.328245,
+                        "latitude": 48.331937
+                    },
+                    "picture": "23",
+                    "comment": "Second report",
+                    "status": "in work"
                 }
             ]
         }

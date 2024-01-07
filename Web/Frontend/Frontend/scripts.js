@@ -9,7 +9,10 @@ function showDashboard() {
   document.getElementById('loginPage').style.display = 'none';
   document.getElementById('dashboard').style.display = 'block';
   // Fetch and display user records
-  fetchReports();
+  fetchReports().then(() => {
+    // Display the fetched reports after the promise is resolved
+    console.log('Reports fetched and displayed');
+  });
    // Display the map
    document.getElementById('map').style.display = 'block';
   // Initialize the map
@@ -46,76 +49,71 @@ document.getElementById('logoutBtn').addEventListener('click', function() {
 
 // Fetch user records (replace with actual functionality)
 function fetchReports() {
-  // Dummy data	
-  const reportData = [
-    { reportID: 1, date: '2024-01-01', location: '48.337522, 14.321065', picture: 'test.jpg', status: 'Recieved' },
-    { reportID: 2, date: '2024-01-02', location: '48.337432, 14.318367', picture: 'test.jpg', status: 'In work' },
-    { reportID: 3, date: '2024-01-01', location: '48.337522, 14.321065', picture: 'test.jpg', status: 'Recieved' },
-    { reportID: 4, date: '2024-01-02', location: '48.337432, 14.318367', picture: 'test.jpg', status: 'In work' },
-    { reportID: 5, date: '2024-01-01', location: '48.337522, 14.321065', picture: 'test.jpg', status: 'Recieved' },
-    { reportID: 6, date: '2024-01-02', location: '48.337432, 14.318367', picture: 'test.jpg', status: 'In work' },
-    { reportID: 7, date: '2024-01-01', location: '48.337522, 14.321065', picture: 'test.jpg', status: 'Recieved' },
-    { reportID: 8, date: '2024-01-02', location: '48.337432, 14.318367', picture: 'test.jpg', status: 'In work' },
-    { reportID: 9, date: '2024-01-01', location: '48.337522, 14.321065', picture: 'test.jpg', status: 'Recieved' },
-    { reportID: 10, date: '2024-01-02', location: '48.337432, 14.318367', picture: 'test.jpg', status: 'In work' },
-    { reportID: 11, date: '2024-01-01', location: '48.337522, 14.321065', picture: 'test.jpg', status: 'Recieved' },
-    { reportID: 12, date: '2024-01-02', location: '48.337432, 14.318367', picture: 'test.jpg', status: 'In work' },
+  return getDataFromServer().then(reportData => {
+    const reportTableBody = document.getElementById('reportTableBody');
+    reportTableBody.innerHTML = ''; // Clear previous report table
+    
+    reportData.forEach(report => {
+      const row = document.createElement('tr');
 
-  ];
+      const reportIDCell = document.createElement('td');
+      reportIDCell.textContent = report.reportID;
+      row.appendChild(reportIDCell);
 
-  const reportTableBody = document.getElementById('reportTableBody');
-  reportTableBody.innerHTML = ''; // Clear previous report table
+      const userIDCell = document.createElement('td');
+      userIDCell.textContent = report.userID;
+      row.appendChild(userIDCell);
 
-  reportData.forEach(report => {
-    const row = document.createElement('tr');
+      //ATTENTION !
+      //Since no date was in the original data.json i commented this part out. Also needs to be enabled in the HTML file again
+    /* const dateCell = document.createElement('td');
+      dateCell.textContent = report.date;
+      row.appendChild(dateCell);*/
 
-    const reportIDCell = document.createElement('td');
-    reportIDCell.textContent = report.reportID;
-    row.appendChild(reportIDCell);
+      const locationCell = document.createElement('td');
+      const locationLink = document.createElement('a');
+      locationLink.href = '#'; // Set a placeholder href
+      locationLink.textContent = report.location; // Assuming report.location contains "latitude, longitude"
 
-    const dateCell = document.createElement('td');
-    dateCell.textContent = report.date;
-    row.appendChild(dateCell);
+      // Set an onclick event to handle displaying location on the map
+      locationLink.onclick = function() {
+        const [lat, lon] = report.location.split(','); // Splitting latitude and longitude
+        const latitude = parseFloat(lat);
+        const longitude = parseFloat(lon);
+        showLocationOnMap(latitude, longitude); // Call function to display location on map
+        return false; // Prevent default anchor behavior
+      };
 
-	  const locationCell = document.createElement('td');
-    const locationLink = document.createElement('a');
-    locationLink.href = '#'; // Set a placeholder href
-    locationLink.textContent = report.location; // Assuming report.location contains "latitude, longitude"
+      locationCell.appendChild(locationLink);
+      row.appendChild(locationCell);
 
-    // Set an onclick event to handle displaying location on the map
-    locationLink.onclick = function() {
-      const [lat, lon] = report.location.split(','); // Splitting latitude and longitude
-      const latitude = parseFloat(lat);
-      const longitude = parseFloat(lon);
-      showLocationOnMap(latitude, longitude); // Call function to display location on map
-      return false; // Prevent default anchor behavior
-    };
+      const pictureCell = document.createElement('td');
+      const picture = document.createElement('img');
+      picture.src = /*'data:image/jpeg;base64,' + */ // report.picture; // Set the image URL dynamically
+      picture.alt = 'Report Image'; // Optional: Set alt text for the image
+      pictureCell.appendChild(picture);
+      row.appendChild(pictureCell);
 
-    locationCell.appendChild(locationLink);
-    row.appendChild(locationCell);
+      const commentCell = document.createElement('td');
+      commentCell.textContent = report.comment;
+      row.appendChild(commentCell);
 
-    const pictureCell = document.createElement('td');
-    const picture = document.createElement('img');
-    picture.src = 'data:image/jpeg;base64,' + report.picture; // Set the image URL dynamically
-    picture.alt = 'Report Image'; // Optional: Set alt text for the image
-    pictureCell.appendChild(picture);
-    row.appendChild(pictureCell);
+      const statusCell = document.createElement('td');
+      const statusSelect = document.createElement('select');
+      ['recieved', 'in work', 'done'].forEach(option => {
+        const optionElement = document.createElement('option');
+        optionElement.value = option;
+        optionElement.textContent = option;
+        if (report.status === option) {
+          optionElement.selected = true;
+        }
+        statusSelect.appendChild(optionElement);
+      });
+      statusCell.appendChild(statusSelect);
+      row.appendChild(statusCell);
 
-    const statusCell = document.createElement('td');
-    const statusSelect = document.createElement('select');
-    ['Recieved', 'In work', 'Done'].forEach(option => {
-      const optionElement = document.createElement('option');
-      optionElement.value = option;
-      optionElement.textContent = option;
-      if (report.status === option) {
-        optionElement.selected = true;
-      }
-      statusSelect.appendChild(optionElement);
+      reportTableBody.appendChild(row);
     });
-    statusCell.appendChild(statusSelect);
-    row.appendChild(statusCell);
-
-    reportTableBody.appendChild(row);
   });
 }
 
@@ -144,4 +142,43 @@ function showLocationOnMap(latitude, longitude) {
       .bindPopup(`Location: ${latitude}, ${longitude}`) // Display the location in the popup
       .openPopup();
   }
+}
+
+//GET METHODE to get all data from server at start 
+function getDataFromServer(){
+  return fetch('http://localhost:3000/get/allreports')
+    .then(response => response.json())
+    .then(data => {
+      // Use the received 'data' in your frontend
+      let reportRecords = scrapData(data);
+      return reportRecords;
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+  });
+}
+
+//TODO UPDATE METHODE to update the status of a specific report
+
+
+
+
+//Restructure the server data in Array of objects to fit in the HTML table 
+function scrapData(data){
+  let reportRecords = [];
+  console.log(data);
+    data.users.forEach(element => {
+      element.reports.forEach(rep => {
+        reportRecords.push({
+          reportID : rep.reportId,
+          userID : rep.userId,
+          location: rep.coordinates.latitude+", "+rep.coordinates.longitude, 
+          picture: rep.picture,
+          comment: rep.comment,
+          status: rep.status
+        });
+      })
+    });
+  console.log(reportRecords);
+  return reportRecords;
 }

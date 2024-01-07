@@ -1,8 +1,11 @@
 const express = require('express')
 const fs = require('fs')
+const cors = require('cors'); // Import the cors module
 
 const app = express()
 const port = 3000
+
+app.use(cors()); // Enable CORS for all routes
 
 app.use(express.json())
 
@@ -39,6 +42,12 @@ app.listen(port, () => {
     console.log(`Server running on port ${port}`)
 })
 
+// Website FRONTEND PART 
+// METHODE to get all reports for the init of the interface
+app.get('/get/allreports', async (req, res) => {
+    const jsonData = require('./data.json');
+    res.json(jsonData);
+})
 
 function newReport(req, res) {
     console.log('request to make new report sent')
