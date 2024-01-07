@@ -1,1 +1,28 @@
-{"users":[{"userId":"123456789","reports":[]},{"userId":"987654321","reports":[]},{"userId":"788697667","reports":[{"userId":"788697667","reportId":1,"coordinates":{"longitude":14.324331,"latitude":48.334674},"picture":"22","comment":"Hello","status":"received"}]}]}
+{
+    "users": [
+        {
+            "userId": "123456789",
+            "reports": []
+        },
+        {
+            "userId": "987654321",
+            "reports": []
+        },
+        {
+            "userId": "788697667",
+            "reports": [
+                {
+                    "userId": "788697667",
+                    "reportId": 1,
+                    "coordinates": {
+                        "longitude": 14.324331,
+                        "latitude": 48.334674
+                    },
+                    "picture": "22",
+                    "comment": "Hello",
+                    "status": "received"
+                }
+            ]
+        }
+    ]
+}

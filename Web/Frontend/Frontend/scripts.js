@@ -1,7 +1,7 @@
 // Mock credentials
 const validCredentials = {
-  username: 'admin',
-  password: 'admin'
+  username: '',
+  password: ''
 };
 let map; // Define a variable to hold the map instance
 // Function to show the dashboard after successful login
@@ -10,6 +10,8 @@ function showDashboard() {
   document.getElementById('dashboard').style.display = 'block';
   // Fetch and display user records
   fetchReports();
+   // Display the map
+   document.getElementById('map').style.display = 'block';
   // Initialize the map
   initMap();
 }
@@ -23,12 +25,13 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
   // Check if the entered credentials match
   if (username === validCredentials.username && password === validCredentials.password) {
     showDashboard(); // Show the dashboard on successful login
+    // After successful login:
+    document.getElementById('loginPage').style.display = 'none'; // Hide login page
+    document.getElementById('dashboard').style.display = 'flex'; // Show dashboard
   } else {
     alert('Invalid credentials. Please try again.');
   }
-  // After successful login:
-  document.getElementById('loginPage').style.display = 'none'; // Hide login page
-  document.getElementById('dashboard').style.display = 'flex'; // Show dashboard
+  
 
 });
 
@@ -36,6 +39,8 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
 document.getElementById('logoutBtn').addEventListener('click', function() {
   document.getElementById('loginPage').style.display = 'block';
   document.getElementById('dashboard').style.display = 'none';
+    // Hide the map on logout
+    document.getElementById('map').style.display = 'none';
  
 });
 
@@ -43,9 +48,19 @@ document.getElementById('logoutBtn').addEventListener('click', function() {
 function fetchReports() {
   // Dummy data	
   const reportData = [
-    { reportID: 1, date: '2024-01-01', location: '48.337522, 14.321065', picture: 'dummy.jpg', status: 'Recieved' },
-    { reportID: 2, date: '2024-01-02', location: '48.337432, 14.318367', picture: 'dummy.jpg', status: 'In work' },
-    
+    { reportID: 1, date: '2024-01-01', location: '48.337522, 14.321065', picture: 'test.jpg', status: 'Recieved' },
+    { reportID: 2, date: '2024-01-02', location: '48.337432, 14.318367', picture: 'test.jpg', status: 'In work' },
+    { reportID: 3, date: '2024-01-01', location: '48.337522, 14.321065', picture: 'test.jpg', status: 'Recieved' },
+    { reportID: 4, date: '2024-01-02', location: '48.337432, 14.318367', picture: 'test.jpg', status: 'In work' },
+    { reportID: 5, date: '2024-01-01', location: '48.337522, 14.321065', picture: 'test.jpg', status: 'Recieved' },
+    { reportID: 6, date: '2024-01-02', location: '48.337432, 14.318367', picture: 'test.jpg', status: 'In work' },
+    { reportID: 7, date: '2024-01-01', location: '48.337522, 14.321065', picture: 'test.jpg', status: 'Recieved' },
+    { reportID: 8, date: '2024-01-02', location: '48.337432, 14.318367', picture: 'test.jpg', status: 'In work' },
+    { reportID: 9, date: '2024-01-01', location: '48.337522, 14.321065', picture: 'test.jpg', status: 'Recieved' },
+    { reportID: 10, date: '2024-01-02', location: '48.337432, 14.318367', picture: 'test.jpg', status: 'In work' },
+    { reportID: 11, date: '2024-01-01', location: '48.337522, 14.321065', picture: 'test.jpg', status: 'Recieved' },
+    { reportID: 12, date: '2024-01-02', location: '48.337432, 14.318367', picture: 'test.jpg', status: 'In work' },
+
   ];
 
   const reportTableBody = document.getElementById('reportTableBody');
@@ -62,7 +77,7 @@ function fetchReports() {
     dateCell.textContent = report.date;
     row.appendChild(dateCell);
 
-	const locationCell = document.createElement('td');
+	  const locationCell = document.createElement('td');
     const locationLink = document.createElement('a');
     locationLink.href = '#'; // Set a placeholder href
     locationLink.textContent = report.location; // Assuming report.location contains "latitude, longitude"
@@ -80,7 +95,10 @@ function fetchReports() {
     row.appendChild(locationCell);
 
     const pictureCell = document.createElement('td');
-    pictureCell.textContent = report.picture; // Replace with image display logic if needed
+    const picture = document.createElement('img');
+    picture.src = 'data:image/jpeg;base64,' + report.picture; // Set the image URL dynamically
+    picture.alt = 'Report Image'; // Optional: Set alt text for the image
+    pictureCell.appendChild(picture);
     row.appendChild(pictureCell);
 
     const statusCell = document.createElement('td');

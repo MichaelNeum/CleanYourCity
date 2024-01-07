@@ -2,6 +2,7 @@
 
 /* Styling for the map container */
 #map {
+  display: none; /* Initially hide the map */
   position: absolute;
   top: 20px;
   right: 20px;
@@ -12,7 +13,22 @@
 
 body {
   margin: 0;
-  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
 }
 
 #dashboard {
@@ -40,24 +56,30 @@ header {
   overflow: auto;
 }
 
-table {
-  border-collapse: collapse;
-  width: 100%;
-  margin-top: 20px;
+.table-container {
+  max-height: 400px; /* Set a max height for scroll */
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
-th,
-td {
+/* Optional: Add a border to the table for visual clarity */
+#reportTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#reportTable th, #reportTable td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
 }
 
-th {
-  background-color: #f2f2f2;
-}
-
 select {
   width: 100%;
   padding: 5px;
+}
+
+td img {
+  max-width: 75px; /* Adjust the maximum width as needed */
+  max-height: 75px; /* Adjust the maximum height as needed */
+  /* Add other styles as desired (e.g., border, padding, etc.) */
 }
