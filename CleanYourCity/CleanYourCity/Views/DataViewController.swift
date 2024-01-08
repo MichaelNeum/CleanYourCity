@@ -15,7 +15,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        data = ReportData.sampleData
+        data = toData(list: ServerCommunication().getMyReports())
         
         tableView.register(UINib(nibName: "DataTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         
@@ -31,10 +31,24 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DataTableViewCell
         
         cell.numberLabel.text = data[indexPath.row].id
-        cell.dateLabel.text = "\(data[indexPath.row].date)"
+        cell.dateLabel.text = data[indexPath.row].date
         cell.statusLabel.text = data[indexPath.row].status
         
         return cell
     }
 
+    func toData(list: ReportList) -> [ReportData] {
+        var result: [ReportData] = []
+        for rep in list.reports {
+            var report = ReportData(id: String(rep.reportId), date: rep.date, status: rep.status)
+            result.append(report)
+        }
+        return result
+    }
+    
+    func refresh() {
+        data = toData(list: ServerCommunication().getMyReports())
+        tableView.reloadData()
+        
+    }
 }

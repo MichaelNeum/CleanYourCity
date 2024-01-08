@@ -30,7 +30,25 @@ class CameraView: UIViewController {
     
     @IBAction func send(_ sender: Any) {
         let com = ServerCommunication()
-        _ = com.sendReport(coordinates: CLLocationCoordinate2D(latitude: 48.334674, longitude: 14.324331), picture: "22", dirtiness: 3, comment: "Hello")
+        let result = com.sendReport(coordinates: CLLocationCoordinate2D(latitude: 48.334674, longitude: 14.324331), picture: "22", dirtiness: 3, comment: "Hello")
+        if(result) {
+            let alert = UIAlertController(title: "Report", message: "Report sent", preferredStyle: .alert)
+            self.present(alert, animated: true, completion: nil)
+            let seconds = 1.0
+            DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                alert.dismiss(animated: true, completion: nil)
+            }
+        } else {
+            let alert = UIAlertController(title: "Report", message: "Report not sent", preferredStyle: .alert)
+            self.present(alert, animated: true, completion: nil)
+            let seconds = 1.0
+            DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                alert.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func showResult() {
     }
 }
 

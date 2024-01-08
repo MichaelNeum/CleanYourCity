@@ -14,9 +14,10 @@ struct Report: Codable {
     let reportId: Int
     let coordinates: Coordinates
     let picture: String
-    let dirtiess: Int
+    let dirtiness: Int
     let comment: String
     let status: String
+    let date: String
 }
 
 struct Coordinates: Codable {

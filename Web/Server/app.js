@@ -81,7 +81,8 @@ function newReport(req, res) {
         picture: req.body.picture,
         dirtiness: req.body.dirtiness,
         comment: req.body.comment,
-        status: "received"
+        status: "received",
+        date: req.body.date
     }
     user.reports.push(newReport)
     writeFile(JSON.stringify(data))

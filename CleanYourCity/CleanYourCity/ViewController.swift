@@ -15,6 +15,10 @@ class ViewController: UIViewController {
     
     private var views: [UIView]!
     
+    private var dataViewController: DataViewController!
+    private var mapView: MapView!
+    private var cameraView: CameraView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
@@ -23,9 +27,9 @@ class ViewController: UIViewController {
     private func setup() {
         views = [UIView]()
         
-        let dataViewController = DataViewController()
-        let mapView = MapView()
-        let cameraView = CameraView()
+        dataViewController = DataViewController()
+        mapView = MapView()
+        cameraView = CameraView()
         
         views.append(dataViewController.view)
         views.append(mapView.view)
@@ -53,6 +57,8 @@ class ViewController: UIViewController {
     
     @IBAction func switchViewAction(_ sender: UISegmentedControl) {
         containerView.bringSubviewToFront(views[sender.selectedSegmentIndex])
+        dataViewController.refresh()
+        
     }
 }
 
