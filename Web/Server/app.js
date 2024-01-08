@@ -34,8 +34,8 @@ app.post('/get/myreports', async (req, res) => {
     sendReports(req, res)
 })
 
-app.post('/get/allreports', async (req, res) => {
-    sendAllReports(req, res)
+app.post('/get/allcoordinates', async (req, res) => {
+    sendAllCoordinates(req, res)
 })
 
 app.listen(port, () => {
@@ -89,11 +89,49 @@ function newReport(req, res) {
 }
 
 function sendReports(req, res) {
-    res.send('this will return your Reports')
+    var userId = req.body.userId
+    var data = readFile()
+    if(userId === "") {
+        userId = createNewUserId(data)
+        const newUser = {
+            userId: userId,
+            reports: []
+        }
+        data.users.push(newUser)
+        writeFile(JSON.stringify(data))
+    }
+    let result =  {
+        reports: [] 
+    }
+    for(var i = 0; i < data.users.length; i++) {
+        if(data.users[i].userId === userId) {
+            result.reports = data.users[i].reports
+        }
+    }
+    res.send(result)
 }
 
-function sendAllReports(req, res) {
-    res.send('this will send all the reports locations')
+function sendAllCoordinates(req, res) {
+    let data = readFile()
+    var userId = req.body.userId
+    if(userId === "") {
+        userId = createNewUserId(data)
+        const newUser = {
+            userId: userId,
+            reports: []
+        }
+        data.users.push(newUser)
+        writeFile(JSON.stringify(data))
+    }
+    let result = {
+        reports: []
+    }
+    for(var i = 0; i < data.users.length; i++) {
+        for(var j = 0; j < data.users[i].reports; j++) {
+            result.reports.push(data.users[i].reports[j])
+        }
+    }
+    res.send(result)
 }
 
 function readFile() {
