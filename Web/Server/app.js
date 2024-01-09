@@ -50,8 +50,7 @@ app.get('/get/allreports', async (req, res) => {
 })
 
 function newReport(req, res) {
-    console.log('request to make new report sent')
-    console.log(req.body)
+    console.log(`make new request for ${req.body.userId}`)
     var data = readFile()
     console.log(data)
     var userId = req.body.userId
@@ -102,6 +101,9 @@ function sendReports(req, res) {
             result.reports = data.users[i].reports
         }
     }
+    for(var i = 0; i < result.reports.length; i++) {
+        result.reports[i].picture = ""
+    }
     res.send(result)
 }
 
@@ -112,7 +114,9 @@ function sendAllCoordinates(req, res) {
     }
     for(var i = 0; i < data.users.length; i++) {
         for(var j = 0; j < data.users[i].reports.length; j++) {
-            result.reports.push(data.users[i].reports[j])
+            var report = data.users[i].reports[j]
+            report.picture = ""
+            result.reports.push(report)
         }
     }
     console.log(result)
