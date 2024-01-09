@@ -54,12 +54,14 @@ class ServerCommunication {
         }
         
         var request = URLRequest(url: url)
+        let sem = DispatchSemaphore.init(value: 0)
         
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let report = Report(userId: "", reportId: 0, coordinates: Coordinates(longitude: 0, latitude: 0), picture: "", dirtiness: 0, comment: "", status: "", date: "")
         request.httpBody = try? JSONEncoder().encode(report)
         let task = URLSession.shared.dataTask(with: request) { data, _, error in
+            defer { sem.signal() }
             guard let data = data, error == nil else {
                 return
             }
@@ -72,6 +74,7 @@ class ServerCommunication {
         }
         
         task.resume()
+        sem.wait()
         return result!
     }
     

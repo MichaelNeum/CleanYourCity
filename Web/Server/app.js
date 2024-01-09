@@ -109,24 +109,15 @@ function sendReports(req, res) {
 
 function sendAllCoordinates(req, res) {
     let data = readFile()
-    var userId = req.body.userId
-    if(userId === "") {
-        userId = createNewUserId(data)
-        const newUser = {
-            userId: userId,
-            reports: []
-        }
-        data.users.push(newUser)
-        writeFile(JSON.stringify(data))
-    }
     let result = {
         reports: []
     }
     for(var i = 0; i < data.users.length; i++) {
-        for(var j = 0; j < data.users[i].reports; j++) {
+        for(var j = 0; j < data.users[i].reports.length; j++) {
             result.reports.push(data.users[i].reports[j])
         }
     }
+    console.log(result)
     res.send(result)
 }
 

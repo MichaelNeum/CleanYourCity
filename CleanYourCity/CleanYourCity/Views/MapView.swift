@@ -71,21 +71,27 @@ class MapView: UIViewController, CLLocationManagerDelegate {
     }
     
     func addStaticMarkers() {
-            // Define coordinates for static locations in Linz, Austria
-                let locations = [
-                    ("Report - Y", CLLocationCoordinate2D(latitude: 48.337574, longitude: 14.318090)),
-                    ("Report - X", CLLocationCoordinate2D(latitude: 48.336597, longitude: 14.318124)),
-                    ("Report - Z", CLLocationCoordinate2D(latitude: 48.334674, longitude: 14.324331))
-                    // Add more locations with names and coordinates in Linz as needed
-                ]
-                
-                // Loop through locations and create annotations with names
-                for location in locations {
-                    let annotation = MKPointAnnotation()
-                    annotation.title = location.0 // Set the name as the title
-                    annotation.coordinate = location.1
-                    mapView.addAnnotation(annotation)
-                }
+        let data = ServerCommunication().getAllCoordinates()
+        print(data)
+        // Define coordinates for static locations in Linz, Austria
+        /* sample data
+        let locations = [
+            ("Report - Y", CLLocationCoordinate2D(latitude: 48.337574, longitude: 14.318090)),
+            ("Report - X", CLLocationCoordinate2D(latitude: 48.336597, longitude: 14.318124)),
+            ("Report - Z", CLLocationCoordinate2D(latitude: 48.334674, longitude: 14.324331))
+            // Add more locations with names and coordinates in Linz as needed
+        ]
+         */
+        
+        // Loop through locations and create annotations with names
+        for report in data.reports {
+            let annotation = MKPointAnnotation()
+            if(report.userId == UserData.getUserId()) {
+                annotation.title = String(report.reportId)
+            }
+            annotation.coordinate = CLLocationCoordinate2D(latitude: report.coordinates.latitude, longitude: report.coordinates.longitude)
+            mapView.addAnnotation(annotation)
+        }
     }
     
     
