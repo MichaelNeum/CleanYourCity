@@ -99,6 +99,7 @@ function sendReports(req, res) {
     }
     console.log(`Number users: ${data.users.length}`)
     for(var i = 0; i < data.users.length; i++) {
+        console.log(`Number of reports ${data.users[i].reports.length} for users ${data.users[i].userId}`)
         if(data.users[i].userId === userId) {
             result.reports = data.users[i].reports
         }
@@ -119,6 +120,7 @@ function sendAllCoordinates(req, res) {
     }
     console.log(`Number users: ${data.users.length}`)
     for(var i = 0; i < data.users.length; i++) {
+        console.log(`Number of reports ${data.users[i].reports.length} for users ${data.users[i].userId}`)
         for(var j = 0; j < data.users[i].reports.length; j++) {
             var report = data.users[i].reports[j]
             report.picture = ""
