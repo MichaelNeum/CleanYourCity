@@ -62,10 +62,22 @@ function newReport(req, res) {
         }
         data.users.push(newUser)
     }
-    var userNumber = 0
+    var userNumber = -1
     for(var i = 0; i < data.users.length; i++) {
         if(data.users[i].userId === userId) {
             userNumber = i
+        }
+    }
+    if(userNumber === -1) {
+        const newUser = {
+            userId: userId,
+            reports: []
+        }
+        data.users.push(newUser)
+        for(var i = 0; i < data.users.length; i++) {
+            if(data.users[i].userId === userId) {
+                userNumber = i
+            }
         }
     }
     const newReport = {
