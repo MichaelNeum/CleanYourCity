@@ -45,8 +45,7 @@ app.listen(port, () => {
 // Website FRONTEND PART 
 // METHODE to get all reports for the init of the interface
 app.get('/get/allreports', async (req, res) => {
-    const jsonData = require('./data.json');
-    res.json(jsonData);
+    res.json(readFile());
 })
 
 function newReport(req, res) {
