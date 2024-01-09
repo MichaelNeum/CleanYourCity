@@ -90,7 +90,7 @@ function sendReports(req, res) {
     var userId = req.body.userId
     console.log(`Sending reports to user ${userId}`)
     var data = readFile()
-    let result =  {
+    var result =  {
         reports: [] 
     }
     if(userId === "") {
@@ -113,8 +113,8 @@ function sendReports(req, res) {
 
 function sendAllCoordinates(req, res) {
     console.log('Sending all coordinates')
-    let data = readFile()
-    let result = {
+    var data = readFile()
+    var result = {
         reports: []
     }
     console.log(`Number users: ${data.users.length}`)
