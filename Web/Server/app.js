@@ -88,6 +88,7 @@ function newReport(req, res) {
 
 function sendReports(req, res) {
     var userId = req.body.userId
+    console.log(`Sending reports to user ${userId}`)
     var data = readFile()
     let result =  {
         reports: [] 
@@ -96,11 +97,13 @@ function sendReports(req, res) {
         res.send(result)
         return
     }
+    console.log(`Number users: ${data.users.length}`)
     for(var i = 0; i < data.users.length; i++) {
         if(data.users[i].userId === userId) {
             result.reports = data.users[i].reports
         }
     }
+    console.log(`Number results ${result.reports.length}`)
     for(var i = 0; i < result.reports.length; i++) {
         result.reports[i].picture = ""
     }
@@ -109,10 +112,12 @@ function sendReports(req, res) {
 }
 
 function sendAllCoordinates(req, res) {
+    console.log('Sending all coordinates')
     let data = readFile()
     let result = {
         reports: []
     }
+    console.log(`Number users: ${data.users.length}`)
     for(var i = 0; i < data.users.length; i++) {
         for(var j = 0; j < data.users[i].reports.length; j++) {
             var report = data.users[i].reports[j]
@@ -120,6 +125,7 @@ function sendAllCoordinates(req, res) {
             result.reports.push(report)
         }
     }
+    console.log(`Number results ${result.reports.length}`)
     console.log(result)
     res.send(result)
 }
@@ -146,6 +152,7 @@ function createNewUserId(data) {
             break
         }
     }
+    console.log(`Created new user ${result}`)
     return result
 }
 
