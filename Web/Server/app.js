@@ -104,6 +104,7 @@ function sendReports(req, res) {
     for(var i = 0; i < result.reports.length; i++) {
         result.reports[i].picture = ""
     }
+    console.log(result)
     res.send(result)
 }
 
