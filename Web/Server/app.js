@@ -92,17 +92,12 @@ function newReport(req, res) {
 function sendReports(req, res) {
     var userId = req.body.userId
     var data = readFile()
-    if(userId === "") {
-        userId = createNewUserId(data)
-        const newUser = {
-            userId: userId,
-            reports: []
-        }
-        data.users.push(newUser)
-        writeFile(JSON.stringify(data))
-    }
     let result =  {
         reports: [] 
+    }
+    if(userId === "") {
+        res.send(result)
+        return
     }
     for(var i = 0; i < data.users.length; i++) {
         if(data.users[i].userId === userId) {

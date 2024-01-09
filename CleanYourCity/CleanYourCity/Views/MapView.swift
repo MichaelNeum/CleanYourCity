@@ -37,6 +37,10 @@ class MapView: UIViewController, CLLocationManagerDelegate {
                 mapView.setRegion(region, animated: true)
         }
     }
+    
+    func getUserLocation() -> CLLocationCoordinate2D {
+        return userAnnotation?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
+    }
 
     // MARK: - CLLocationManagerDelegate Methods
 

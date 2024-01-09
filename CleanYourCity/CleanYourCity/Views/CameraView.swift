@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 
 class CameraView: UIViewController {
     
@@ -15,10 +16,16 @@ class CameraView: UIViewController {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     
+    private var mapView: MapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         textField.delegate = self
+    }
+    
+    func setMapView(mapView: MapView) {
+        self.mapView = mapView
     }
     
     @IBAction func addFoto(_ sender: Any) {
@@ -30,7 +37,8 @@ class CameraView: UIViewController {
     
     @IBAction func send(_ sender: Any) {
         let com = ServerCommunication()
-        let result = com.sendReport(coordinates: CLLocationCoordinate2D(latitude: 48.334674, longitude: 14.324331), picture: "22", dirtiness: 3, comment: "Hello")
+        let imageData = imageView.image?.pngData()
+        let result = com.sendReport(coordinates: mapView.getUserLocation(), picture: imageData?.base64EncodedString(options: .lineLength64Characters) ?? "", dirtiness: Int(slider.value), comment: textField.text ?? "")
         if(result) {
             let alert = UIAlertController(title: "Report", message: "Report sent", preferredStyle: .alert)
             self.present(alert, animated: true, completion: nil)
@@ -38,6 +46,7 @@ class CameraView: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
                 alert.dismiss(animated: true, completion: nil)
             }
+            clearForm()
         } else {
             let alert = UIAlertController(title: "Report", message: "Report not sent", preferredStyle: .alert)
             self.present(alert, animated: true, completion: nil)
@@ -48,7 +57,10 @@ class CameraView: UIViewController {
         }
     }
     
-    func showResult() {
+    private func clearForm() {
+        textField.text = ""
+        imageView.image = nil
+        slider.value = (slider.maximumValue + slider.minimumValue) / 2
     }
 }
 

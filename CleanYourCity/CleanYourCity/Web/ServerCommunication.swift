@@ -21,7 +21,7 @@ class ServerCommunication {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let date = "\(Date())"
         let cords = Coordinates(longitude: coordinates.longitude, latitude: coordinates.latitude)
-        let report = Report(userId: userId, reportId: 0, coordinates: cords, picture: picture, dirtiness: dirtiness, comment: comment, status: "", date: date)
+        let report = Report(userId: UserData.getUserId(), reportId: 0, coordinates: cords, picture: picture, dirtiness: dirtiness, comment: comment, status: "", date: date)
         request.httpBody = try? JSONEncoder().encode(report)
         var success = false
         let task = URLSession.shared.dataTask(with: request) { data, _, error in
@@ -34,6 +34,9 @@ class ServerCommunication {
                 let response = try JSONDecoder().decode(Report.self, from: data)
                 if(response.status == "received") {
                     success = true
+                }
+                if(UserData.getUserId() != response.userId) {
+                    UserData.setUserId(id: response.userId)
                 }
             } catch {
                 print(error)
@@ -83,7 +86,7 @@ class ServerCommunication {
         
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let report = Report(userId: userId, reportId: 0, coordinates: Coordinates(longitude: 0, latitude: 0), picture: "", dirtiness: 0, comment: "", status: "", date: "")
+        let report = Report(userId: UserData.getUserId(), reportId: 0, coordinates: Coordinates(longitude: 0, latitude: 0), picture: "", dirtiness: 0, comment: "", status: "", date: "")
         request.httpBody = try? JSONEncoder().encode(report)
         let task = URLSession.shared.dataTask(with: request) { data, _, error in
             defer { sem.signal() }

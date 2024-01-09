@@ -31,6 +31,8 @@ class ViewController: UIViewController {
         mapView = MapView()
         cameraView = CameraView()
         
+        cameraView.setMapView(mapView: mapView)
+        
         views.append(dataViewController.view)
         views.append(mapView.view)
         views.append(cameraView.view)
