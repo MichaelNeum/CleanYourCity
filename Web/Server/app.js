@@ -133,7 +133,7 @@ function sendAllCoordinates(req, res) {
 }
 
 function readFile() {
-    var result = fs.readFileSync('./data.json')
+    var result = fs.readFile('./data.json')
     return JSON.parse(result)
 }
 

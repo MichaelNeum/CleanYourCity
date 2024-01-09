@@ -7,8 +7,6 @@ class ServerCommunication {
     private let coordinatesUrl = "http://84.113.45.59:3000/get/allcoordinates"
     private let myReportsUrl = "http://84.113.45.59:3000/get/myreports"
     
-    private let userId = "219714422"
-    
     func sendReport(coordinates: CLLocationCoordinate2D, picture: String, dirtiness: Int, comment: String) -> Bool {
         guard let url = URL(string: reportUrl) else {
             return false
