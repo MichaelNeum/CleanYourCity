@@ -37,7 +37,7 @@ class CameraView: UIViewController {
     
     @IBAction func send(_ sender: Any) {
         let com = ServerCommunication()
-        let imageData = imageView.image?.pngData()
+        let imageData = imageView.image?.jpegData(compressionQuality: 0.25)
         let result = com.sendReport(coordinates: mapView.getUserLocation(), picture: imageData?.base64EncodedString(options: .lineLength64Characters) ?? "", dirtiness: Int(slider.value), comment: textField.text ?? "")
         if(result) {
             let alert = UIAlertController(title: "Report", message: "Report sent", preferredStyle: .alert)

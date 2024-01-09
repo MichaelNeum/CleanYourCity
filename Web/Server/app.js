@@ -64,10 +64,8 @@ function newReport(req, res) {
         data.users.push(newUser)
     }
     var userNumber = 0
-    var user = null
     for(var i = 0; i < data.users.length; i++) {
         if(data.users[i].userId === userId) {
-            user = data.users[i]
             userNumber = i
         }
     }
@@ -84,7 +82,7 @@ function newReport(req, res) {
         status: "received",
         date: req.body.date
     }
-    user.reports.push(newReport)
+    data.users[userNumber].reports.push(newReport)
     writeFile(JSON.stringify(data))
     res.send(newReport)
 }
