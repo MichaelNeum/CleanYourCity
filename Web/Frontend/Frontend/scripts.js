@@ -66,9 +66,9 @@ function fetchReports() {
 
       //ATTENTION !
       //Since no date was in the original data.json i commented this part out. Also needs to be enabled in the HTML file again
-    /* const dateCell = document.createElement('td');
+      const dateCell = document.createElement('td');
       dateCell.textContent = report.date;
-      row.appendChild(dateCell);*/
+      row.appendChild(dateCell);
 
       const locationCell = document.createElement('td');
       const locationLink = document.createElement('a');
@@ -89,7 +89,7 @@ function fetchReports() {
 
       const pictureCell = document.createElement('td');
       const picture = document.createElement('img');
-      picture.src = /*'data:image/jpeg;base64,' + */ // report.picture; // Set the image URL dynamically
+      picture.src = 'data:image/jpeg;base64,' +  report.picture; // Set the image URL dynamically
       picture.alt = 'Report Image'; // Optional: Set alt text for the image
       pictureCell.appendChild(picture);
       row.appendChild(pictureCell);
@@ -146,7 +146,7 @@ function showLocationOnMap(latitude, longitude) {
 
 //GET METHODE to get all data from server at start 
 function getDataFromServer(){
-  return fetch('http://localhost:3000/get/allreports')
+  return fetch('http://84.113.45.59:3000/get/allreports')
     .then(response => response.json())
     .then(data => {
       // Use the received 'data' in your frontend
@@ -172,6 +172,7 @@ function scrapData(data){
         reportRecords.push({
           reportID : rep.reportId,
           userID : rep.userId,
+          date : rep.date,
           location: rep.coordinates.latitude+", "+rep.coordinates.longitude, 
           picture: rep.picture,
           comment: rep.comment,
