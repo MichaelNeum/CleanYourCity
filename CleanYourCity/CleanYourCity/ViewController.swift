@@ -60,7 +60,7 @@ class ViewController: UIViewController {
     @IBAction func switchViewAction(_ sender: UISegmentedControl) {
         containerView.bringSubviewToFront(views[sender.selectedSegmentIndex])
         dataViewController.refresh()
-        
+        mapView.addStaticMarkers()
     }
 }
 

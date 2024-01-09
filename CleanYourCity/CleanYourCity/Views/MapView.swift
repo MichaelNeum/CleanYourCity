@@ -15,6 +15,7 @@ class MapView: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var centerButton: UIButton!
     let locationManager = CLLocationManager()
     var userAnnotation: MKPointAnnotation?
+    var staticAnnotations = [MKPointAnnotation]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,17 +73,7 @@ class MapView: UIViewController, CLLocationManagerDelegate {
     
     func addStaticMarkers() {
         let data = ServerCommunication().getAllCoordinates()
-        print(data)
-        // Define coordinates for static locations in Linz, Austria
-        /* sample data
-        let locations = [
-            ("Report - Y", CLLocationCoordinate2D(latitude: 48.337574, longitude: 14.318090)),
-            ("Report - X", CLLocationCoordinate2D(latitude: 48.336597, longitude: 14.318124)),
-            ("Report - Z", CLLocationCoordinate2D(latitude: 48.334674, longitude: 14.324331))
-            // Add more locations with names and coordinates in Linz as needed
-        ]
-         */
-        
+        removeAllStaticMarkers()
         // Loop through locations and create annotations with names
         for report in data.reports {
             let annotation = MKPointAnnotation()
@@ -91,19 +82,13 @@ class MapView: UIViewController, CLLocationManagerDelegate {
             }
             annotation.coordinate = CLLocationCoordinate2D(latitude: report.coordinates.latitude, longitude: report.coordinates.longitude)
             mapView.addAnnotation(annotation)
+            staticAnnotations.append(annotation)
         }
     }
     
-    
-
-/*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func removeAllStaticMarkers() {
+        mapView.removeAnnotations(staticAnnotations)
+        staticAnnotations = [MKPointAnnotation]()
     }
-    */
 
 }
