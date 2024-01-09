@@ -134,7 +134,7 @@ function sendAllCoordinates(req, res) {
 
 function readFile() {
     try {
-        var result = fs.readFile('./data.json')
+        var result = fs.readFileSync('./data.json')
         return JSON.parse(result)
     } catch (e) {
         console.log(e)
@@ -143,7 +143,7 @@ function readFile() {
 }
 
 function writeFile(data) {
-    fs.writeFileSync('./data.json', data, e => {
+    fs.writeFile('./data.json', data, e => {
         if(e) console.log(e)
     })
 }
