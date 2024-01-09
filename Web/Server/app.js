@@ -133,8 +133,13 @@ function sendAllCoordinates(req, res) {
 }
 
 function readFile() {
-    var result = fs.readFile('./data.json')
-    return JSON.parse(result)
+    try {
+        var result = fs.readFile('./data.json')
+        return JSON.parse(result)
+    } catch (e) {
+        console.log(e)
+    }
+    return { users: []}
 }
 
 function writeFile(data) {
