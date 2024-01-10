@@ -87,6 +87,10 @@ function fetchReports() {
       locationCell.appendChild(locationLink);
       row.appendChild(locationCell);
 
+      const dirtcell = document.createElement('td');
+      dirtcell.textContent = report.dirtiness;
+      row.appendChild(dirtcell);
+
       const pictureCell = document.createElement('td');
       const picture = document.createElement('img');
       picture.src = 'data:image/jpeg;base64,' +  report.picture; // Set the image URL dynamically
@@ -108,6 +112,12 @@ function fetchReports() {
           optionElement.selected = true;
         }
         statusSelect.appendChild(optionElement);
+      });
+      statusSelect.addEventListener('change', function(event) {
+        const updatedStatus = event.target.value; // Get the updated status
+
+        // Make a call to update the status via your Express server
+        updateStatus(report.userID,report.legacyreportID, updatedStatus);
       });
       statusCell.appendChild(statusSelect);
       row.appendChild(statusCell);
@@ -146,7 +156,7 @@ function showLocationOnMap(latitude, longitude) {
 
 //GET METHODE to get all data from server at start 
 function getDataFromServer(){
-  return fetch('http://84.113.45.59:3000/get/allreports')
+  return fetch('http://localhost:3000/get/allreports')
     .then(response => response.json())
     .then(data => {
       // Use the received 'data' in your frontend
@@ -159,7 +169,30 @@ function getDataFromServer(){
 }
 
 //TODO UPDATE METHODE to update the status of a specific report
-
+function updateStatus(userId, reportId, newStatus) {
+  // Use fetch to send a POST request to your Express server with the updated status
+  console.log(reportId);
+  console.log(userId);
+  console.log(newStatus);
+  fetch('http://localhost:3000/update/status', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ userId, reportId, newStatus }),
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      // Optionally, handle success or update the UI after successful update
+      console.log('Status of '+ userId +"-"+ reportId + ' updated successfully');
+    })
+    .catch(error => {
+      console.error('Error updating status:', error);
+      // Optionally, handle errors or display a message to the user
+    });
+}
 
 
 
@@ -170,10 +203,12 @@ function scrapData(data){
     data.users.forEach(element => {
       element.reports.forEach(rep => {
         reportRecords.push({
-          reportID : rep.reportId,
+          legacyreportID : rep.reportId, 
+          reportID : rep.userId +"-"+ rep.reportId.toString(),
           userID : rep.userId,
           date : rep.date,
           location: rep.coordinates.latitude+", "+rep.coordinates.longitude, 
+          dirtiness: rep.dirtiness,
           picture: rep.picture,
           comment: rep.comment,
           status: rep.status

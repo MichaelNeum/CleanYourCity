@@ -1,1 +1,43 @@
-{"users":[{"userId":"862492195","reports":[{"userId":"862492195","reportId":1,"coordinates":{"longitude":0,"latitude":0},"picture":"","dirtiness":3,"comment":"test","status":"received","date":"2024-01-09 12:13:54 +0000"},{"userId":"862492195","reportId":2,"coordinates":{"longitude":0,"latitude":0},"picture":"","dirtiness":1,"comment":"hallo","status":"received","date":"2024-01-09 12:44:21 +0000"}]},{"userId":"205730068","reports":[]},{"userId":"447445142","reports":[]}]}
+{
+    "users": [
+        {
+            "userId": "862492195",
+            "reports": [
+                {
+                    "userId": "862492195",
+                    "reportId": 1,
+                    "coordinates": {
+                        "longitude": 0,
+                        "latitude": 0
+                    },
+                    "picture": "",
+                    "dirtiness": 3,
+                    "comment": "test",
+                    "status": "recieved",
+                    "date": "2024-01-09 12:13:54 +0000"
+                },
+                {
+                    "userId": "862492195",
+                    "reportId": 2,
+                    "coordinates": {
+                        "longitude": 0,
+                        "latitude": 0
+                    },
+                    "picture": "",
+                    "dirtiness": 1,
+                    "comment": "hallo",
+                    "status": "done",
+                    "date": "2024-01-09 12:44:21 +0000"
+                }
+            ]
+        },
+        {
+            "userId": "205730068",
+            "reports": []
+        },
+        {
+            "userId": "447445142",
+            "reports": []
+        }
+    ]
+}

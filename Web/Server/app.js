@@ -48,6 +48,36 @@ app.get('/get/allreports', async (req, res) => {
     res.json(readFile());
 })
 
+// UPDATE the status of a report via Pos METHODE
+// ReportID, UserID, and Status are needed in request
+app.put('/update/status', (req, res) => {
+   
+    const { userId, reportId, newStatus } = req.body;
+
+    //JUST server console logs
+    console.log("UPDATING THE SERVER FILE.....")
+    console.log("UserId "+ userId.toString());
+    console.log("ReportId "+ reportId);
+    console.log("Status "+ newStatus +"\n");
+
+    const data = readFile();
+    const userIndex = data.users.findIndex(user => user.userId === userId);
+    if (userIndex !== -1) {
+        const reportIndex = data.users[userIndex].reports.findIndex(report => report.reportId === reportId);
+
+        if (reportIndex !== -1) {
+            data.users[userIndex].reports[reportIndex].status = newStatus;
+            writeFile(JSON.stringify(data));
+            res.status(200).send('Status updated successfully');
+        } else {
+            res.status(404).send('Report ID not found');
+        }
+    } else {
+        console.log("User not found")
+        res.status(404).send('User ID not found');
+    }
+});
+
 function newReport(req, res) {
     console.log(`make new request for ${req.body.userId}`)
     var data = readFile()
