@@ -29,26 +29,28 @@
                                 <rect key="frame" x="10" y="119" width="393" height="32"/>
                                 <segments>
                                     <segment title="My Reports"/>
-                                    <segment title="Home"/>
+                                    <segment title="Map"/>
                                     <segment title="Report"/>
                                 </segments>
                                 <connections>
                                     <action selector="switchViewAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="9ZL-LI-pNl"/>
                                 </connections>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GsZ-kb-PEF">
-                                <rect key="frame" x="305" y="69" width="70" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GsZ-kb-PEF">
+                                <rect key="frame" x="313" y="69" width="70" height="40"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Login "/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Login "/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hJm-T2-XeN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="hJm-T2-XeN" firstAttribute="trailing" secondItem="GsZ-kb-PEF" secondAttribute="trailing" constant="10" id="6Kv-d5-gQB"/>
                             <constraint firstItem="4cx-Ta-ygt" firstAttribute="leading" secondItem="hJm-T2-XeN" secondAttribute="leading" constant="10" id="8rz-s9-yht"/>
                             <constraint firstItem="Z92-DD-rnb" firstAttribute="leading" secondItem="hJm-T2-XeN" secondAttribute="leading" constant="10" id="9Nf-yF-c6J"/>
+                            <constraint firstItem="MKH-Bn-mu1" firstAttribute="top" secondItem="GsZ-kb-PEF" secondAttribute="bottom" constant="10" id="B8A-Tb-sSt"/>
                             <constraint firstItem="MKH-Bn-mu1" firstAttribute="trailing" secondItem="hJm-T2-XeN" secondAttribute="trailing" constant="10" id="Erz-aa-r1H"/>
+                            <constraint firstItem="GsZ-kb-PEF" firstAttribute="top" secondItem="hJm-T2-XeN" secondAttribute="top" constant="10" id="IzD-6b-pTi"/>
                             <constraint firstItem="MKH-Bn-mu1" firstAttribute="leading" secondItem="hJm-T2-XeN" secondAttribute="leading" constant="10" id="N5m-S4-b5r"/>
                             <constraint firstItem="4cx-Ta-ygt" firstAttribute="top" secondItem="hJm-T2-XeN" secondAttribute="top" constant="10" id="NHl-nu-6SS"/>
                             <constraint firstItem="hJm-T2-XeN" firstAttribute="trailing" secondItem="Z92-DD-rnb" secondAttribute="trailing" constant="10" id="RK1-nC-InI"/>

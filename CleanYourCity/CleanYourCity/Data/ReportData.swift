@@ -11,5 +11,6 @@ struct ReportData {
     var id: String
     var date: String
     var status: String
+    var comment: String
 }
 

@@ -30,9 +30,10 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DataTableViewCell
         
-        cell.numberLabel.text = data[indexPath.row].id
+        cell.numberLabel.text = "Id: " + data[indexPath.row].id
         cell.dateLabel.text = data[indexPath.row].date
         cell.statusLabel.text = data[indexPath.row].status
+        cell.commentLabel.text = data[indexPath.row].comment
         
         return cell
     }
@@ -40,7 +41,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func toData(list: ReportList) -> [ReportData] {
         var result: [ReportData] = []
         for rep in list.reports {
-            var report = ReportData(id: String(rep.reportId), date: rep.date, status: rep.status)
+            let report = ReportData(id: String(rep.reportId), date: rep.date, status: rep.status, comment: rep.comment)
             result.append(report)
         }
         return result
